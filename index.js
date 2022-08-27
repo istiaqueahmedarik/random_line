@@ -22,13 +22,13 @@ app.get('/line',(req,res)=>{
                   context: line,
                   top_p: 0.9,
                   temp: 0.8,
-                  response_length: 21,
+                  response_length: 35,
                   remove_input: true
                 }
               }
           ).then(function (response) {
             
-            res.status(200).send({ data: response.data[0].generated_text })
+            res.status(200).send({ data: line+response.data[0].generated_text })
 
           }).catch(function (error) {
             console.error(error);

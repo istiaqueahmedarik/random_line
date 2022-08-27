@@ -22,7 +22,7 @@ app.get('/line',(req,res)=>{
                   context: line,
                   top_p: 0.9,
                   temp: 0.8,
-                  response_length: 35,
+                  response_length: 25,
                   remove_input: true
                 }
               }

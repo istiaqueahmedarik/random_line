@@ -9,31 +9,13 @@ app.get('/',(req,res)=>{
 
 })
 app.get('/line',(req,res)=>{
-    axios.get(`https://type.fit/api/quotes`)
+    axios.get(`https://api.quotable.io/random?minLength=200&maxLength=300`)
     .then(function (response) {
           // handle success
-          random_index = Math.floor(Math.random()*(response.data.length-1+1)+1)
-          let line = response.data[random_index].text
-          axios.request(
-            {
-                method: 'POST',
-                url: 'https://api.eleuther.ai/completion',    
-                data: {
-                  context: line,
-                  top_p: 0.9,
-                  temp: 0.8,
-                  response_length: 25,
-                  remove_input: true
-                }
-              }
-          ).then(function (response) {
-            
-            res.status(200).send({ data: line+response.data[0].generated_text })
-
-          }).catch(function (error) {
-            console.error(error);
-          });
-
+          
+          let line = response.data.content
+          res.status(200).send({ data: line })
+          
 
          
     })
